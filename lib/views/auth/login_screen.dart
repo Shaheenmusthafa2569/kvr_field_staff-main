@@ -4,37 +4,20 @@ import 'package:kvr_field_staff/core/theme/app_colors.dart';
 import 'package:kvr_field_staff/views/auth/forgot_password.dart';
 import 'package:kvr_field_staff/views/auth/signup.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class Myloginpage extends StatelessWidget {
+class Myloginpage extends StatefulWidget {
   Myloginpage({super.key});
+
+  @override
+  State<Myloginpage> createState() => _MyloginpageState();
+}
+
+class _MyloginpageState extends State<Myloginpage> {
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
-  Future<void> saveData(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      final preferrenceVariable = await SharedPreferences.getInstance();
-      String? savedEmail = preferrenceVariable.getString("Email");
-      String? savedPassword = preferrenceVariable.getString("Password");
-      if (emailController.text == savedEmail &&
-          passwordController.text == savedPassword) {
-        await preferrenceVariable.setBool("isLogin", true);
-      }
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Myforgotpasswordpage()),
-      );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Login Successfully")));
-    }
-    Future<void> clearData() async {
-      final preferrenceVariable = await SharedPreferences.getInstance();
-      await preferrenceVariable.clear();
-      emailController.clear();
-      passwordController.clear();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +46,15 @@ class Myloginpage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        "Welcome Back",
-                        style: GoogleFonts.inter(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.teal,
-                        ),
-                      ),
+                      // SizedBox(height: 5),
+                      // Text(
+                      //   "Welcome Back",
+                      //   style: GoogleFonts.inter(
+                      //     fontSize: 25,
+                      //     fontWeight: FontWeight.w500,
+                      //     color: AppColors.teal,
+                      //   ),
+                      // ),
                       SizedBox(height: 5),
                       Text(
                         "Sign in to access your dashboard",
@@ -94,15 +77,26 @@ class Myloginpage extends StatelessWidget {
                         hintText: "Password",
                         prefixIcon: Icons.lock,
                         label: "Password",
+                        obscureText: true,
                         validator: Appvalidators.validatePassword,
                       ),
 
-                      Text(
-                        "Forgot Password?",
-                        style: GoogleFonts.inter(
-                          color: AppColors.teal,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Myforgotpasswordpage(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                          style: GoogleFonts.inter(
+                            color: AppColors.teal,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
 

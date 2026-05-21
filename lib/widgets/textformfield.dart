@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
 
-class Customtextformfield extends StatelessWidget {
+class Customtextformfield extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final IconData? prefixIcon;
@@ -10,11 +10,13 @@ class Customtextformfield extends StatelessWidget {
   final String? Function(String?)? validator;
   final String label;
   final InputDecoration? decoration;
+
   const Customtextformfield({
     super.key,
     required this.controller,
     required this.hintText,
     this.prefixIcon,
+
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.validator,
@@ -23,20 +25,45 @@ class Customtextformfield extends StatelessWidget {
   });
 
   @override
+  State<Customtextformfield> createState() => _CustomtextformfieldState();
+}
+
+class _CustomtextformfieldState extends State<Customtextformfield> {
+  late bool _isObscured;
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = widget.obscureText;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
+      controller: widget.controller,
+      obscureText: _isObscured,
+      keyboardType: widget.keyboardType,
+      validator: widget.validator,
       decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    _isObscured = !_isObscured;
+                  });
+                },
+                icon: Icon(
+                  _isObscured ? Icons.visibility_off : Icons.visibility,
+                  color: AppColors.navy,
+                ),
+              )
+            : null,
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
         prefixIconColor: AppColors.navy,
         hintStyle: TextStyle(color: AppColors.navy),
         filled: true,
         fillColor: Colors.white,
-        labelText: label,
+        labelText: widget.label,
         alignLabelWithHint: true,
         labelStyle: TextStyle(color: AppColors.navy),
 
@@ -126,8 +153,7 @@ class Appvalidators {
     String confirmPasswordController,
     String passwordController,
   ) {
-    if (confirmPasswordController == null ||
-        confirmPasswordController.isEmpty) {
+    if (confirmPasswordController.isEmpty) {
       return "Please enter the password again";
     }
     if (confirmPasswordController != passwordController) {
@@ -168,7 +194,7 @@ class CustomButton extends StatelessWidget {
           elevation: 2,
           shadowColor: backgroundColor.withOpacity(0.4),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(20),
           ),
         ),
         child: isLoading
