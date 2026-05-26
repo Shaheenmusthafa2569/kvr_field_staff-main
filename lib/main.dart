@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kvr_field_staff/views/auth/login_screen.dart';
+import 'package:kvr_field_staff/views/auth/splash_screen.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:kvr_field_staff/views/auth/login_screen.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
@@ -51,8 +51,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Myloginpage()
-    ,
-    debugShowCheckedModeBanner: false,);
+    return MaterialApp(
+      home: MySplashScreen(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

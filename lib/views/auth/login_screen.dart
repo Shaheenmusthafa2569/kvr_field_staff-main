@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
+import 'package:kvr_field_staff/core/theme/app_spacing.dart';
 import 'package:kvr_field_staff/views/auth/forgot_password.dart';
 import 'package:kvr_field_staff/views/auth/signup.dart';
+import 'package:kvr_field_staff/widgets/primarybutton.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
 
-class Myloginpage extends StatefulWidget {
-  Myloginpage({super.key});
+class MySigninpage extends StatefulWidget {
+  const MySigninpage({super.key});
 
   @override
-  State<Myloginpage> createState() => _MyloginpageState();
+  State<MySigninpage> createState() => _MySigninpageState();
 }
 
-class _MyloginpageState extends State<Myloginpage> {
+class _MySigninpageState extends State<MySigninpage> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -25,14 +27,14 @@ class _MyloginpageState extends State<Myloginpage> {
       backgroundColor: AppColors.background,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(AppSpacing.sm),
           child: SizedBox(
             height: 500,
             child: Card(
               elevation: 7,
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(AppSpacing.lg),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -46,6 +48,7 @@ class _MyloginpageState extends State<Myloginpage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+
                       // SizedBox(height: 5),
                       // Text(
                       //   "Welcome Back",
@@ -55,7 +58,7 @@ class _MyloginpageState extends State<Myloginpage> {
                       //     color: AppColors.teal,
                       //   ),
                       // ),
-                      SizedBox(height: 5),
+                      SizedBox(height: AppSpacing.xs),
                       Text(
                         "Sign in to access your dashboard",
                         style: GoogleFonts.inter(
@@ -63,7 +66,7 @@ class _MyloginpageState extends State<Myloginpage> {
                           fontSize: 15,
                         ),
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: AppSpacing.lg),
                       Customtextformfield(
                         controller: emailController,
                         hintText: "Email Address",
@@ -71,7 +74,7 @@ class _MyloginpageState extends State<Myloginpage> {
                         label: "Email Address",
                         validator: Appvalidators.validateEmail,
                       ),
-                      SizedBox(height: 11),
+                      SizedBox(height: AppSpacing.md),
                       Customtextformfield(
                         controller: passwordController,
                         hintText: "Password",
@@ -80,7 +83,7 @@ class _MyloginpageState extends State<Myloginpage> {
                         obscureText: true,
                         validator: Appvalidators.validatePassword,
                       ),
-
+                     SizedBox(height: AppSpacing.md),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -100,8 +103,8 @@ class _MyloginpageState extends State<Myloginpage> {
                         ),
                       ),
 
-                      SizedBox(height: 10),
-                      CustomButton(
+                      SizedBox(height: AppSpacing.md),
+                      PrimaryCustomButton(
                         text: "Sign in",
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -111,13 +114,13 @@ class _MyloginpageState extends State<Myloginpage> {
                           }
                         },
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: AppSpacing.lg),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Dont have an Account yet? ",
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
                               color: AppColors.navy,
                               fontSize: 15,
                             ),
@@ -133,7 +136,7 @@ class _MyloginpageState extends State<Myloginpage> {
                             },
                             child: Text(
                               "Signup",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                 color: AppColors.teal,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,

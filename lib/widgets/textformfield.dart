@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
 
 class Customtextformfield extends StatefulWidget {
@@ -38,69 +39,73 @@ class _CustomtextformfieldState extends State<Customtextformfield> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      obscureText: _isObscured,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      decoration: InputDecoration(
-        suffixIcon: widget.obscureText
-            ? IconButton(
-                onPressed: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
-                icon: Icon(
-                  _isObscured ? Icons.visibility_off : Icons.visibility,
-                  color: AppColors.navy,
-                ),
-              )
-            : null,
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : null,
-        prefixIconColor: AppColors.navy,
-        hintStyle: TextStyle(color: AppColors.navy),
-        filled: true,
-        fillColor: Colors.white,
-        labelText: widget.label,
-        alignLabelWithHint: true,
-        labelStyle: TextStyle(color: AppColors.navy),
+    return SizedBox(
+      // height: 48,
+      child: TextFormField(
+        controller: widget.controller,
+        obscureText: _isObscured,
+        keyboardType: widget.keyboardType,
+        validator: widget.validator,
+        decoration: InputDecoration(
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isObscured = !_isObscured;
+                    });
+                  },
+                  icon: Icon(
+                    _isObscured ? Icons.visibility_off : Icons.visibility,
+                    color: AppColors.navy,
+                  ),
+                )
+              : null,
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon != null
+              ? Icon(widget.prefixIcon)
+              : null,
+          prefixIconColor: AppColors.navy,
+          hintStyle: GoogleFonts.inter(color: AppColors.navy),
+          filled: true,
+          fillColor: Colors.white,
+          labelText: widget.label,
+          // alignLabelWithHint: fa,
+          labelStyle: GoogleFonts.inter(color: AppColors.navy),
 
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.navy, width: 2),
-        ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppColors.navy, width: 2),
+          ),
 
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.blue, width: 2),
-        ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppColors.blue, width: 2),
+          ),
 
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.navy, width: 1.5),
-        ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppColors.navy, width: 1.5),
+          ),
 
-        // Error Styling
-        errorStyle: const TextStyle(
-          color: AppColors.red,
-          fontWeight: FontWeight.w500,
-        ),
-        helperText: "",
-        helperStyle: TextStyle(fontSize: 12, height: 1),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.red, width: 1),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.red, width: 2),
-        ),
+          // Error Styling
+          errorStyle: const TextStyle(
+            color: AppColors.red,
+            fontWeight: FontWeight.w500,
+          ),
+          
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: AppColors.red, width: 1),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.red, width: 2),
+          ),
 
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 18,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 0,
+          ),
         ),
       ),
     );
@@ -160,61 +165,5 @@ class Appvalidators {
       return "Password do not match";
     }
     return null;
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  final Color backgroundColor;
-  final Color textColor;
-  final bool isLoading;
-  final bool isFullWidth;
-
-  const CustomButton({
-    super.key,
-    required this.text,
-    required this.onPressed,
-    this.textColor = AppColors.background,
-    this.backgroundColor = AppColors.navy,
-    this.isFullWidth = true,
-    this.isLoading = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: isFullWidth ? double.infinity : null,
-      height: 48, // Premium height for better touch targets
-      child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          elevation: 2,
-          shadowColor: backgroundColor.withOpacity(0.4),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: isLoading
-            ? const SizedBox(
-                height: 24,
-                width: 24,
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                  strokeWidth: 2,
-                ),
-              )
-            : Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                ),
-              ),
-      ),
-    );
   }
 }

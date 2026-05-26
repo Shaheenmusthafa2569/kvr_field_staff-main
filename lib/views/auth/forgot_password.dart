@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
 import 'package:kvr_field_staff/views/auth/login_screen.dart';
+import 'package:kvr_field_staff/widgets/primarybutton.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
 
 class Myforgotpasswordpage extends StatelessWidget {
@@ -32,15 +33,15 @@ class Myforgotpasswordpage extends StatelessWidget {
                         Appvalidators.validateEmail;
                       },
                     ),
-                    SizedBox(height: 15),
-                    CustomButton(text: "Send Recovery Link", onPressed: () {}),
+                    SizedBox(height: 1),
+                    PrimaryCustomButton(text: "Send Recovery Link", onPressed: () {}),
                     SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Myloginpage(),
+                            builder: (context) => MySigninpage(),
                           ),
                         );
                       },

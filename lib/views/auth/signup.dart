@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
+import 'package:kvr_field_staff/core/theme/app_spacing.dart';
 import 'package:kvr_field_staff/views/auth/login_screen.dart';
+import 'package:kvr_field_staff/views/myhomepage.dart';
+import 'package:kvr_field_staff/widgets/primarybutton.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
 
 class Mysignuppage extends StatefulWidget {
@@ -27,7 +30,7 @@ class _MysignuppageState extends State<Mysignuppage> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         child: Center(
           child: SizedBox(
             height: 600,
@@ -35,7 +38,7 @@ class _MysignuppageState extends State<Mysignuppage> {
               elevation: 7,
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(AppSpacing.lg),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -49,7 +52,7 @@ class _MysignuppageState extends State<Mysignuppage> {
                           color: AppColors.navy,
                         ),
                       ),
-                      SizedBox(height: 12),
+                      SizedBox(height: AppSpacing.md),
                       Customtextformfield(
                         controller: usernameController,
                         hintText: "Username",
@@ -57,7 +60,7 @@ class _MysignuppageState extends State<Mysignuppage> {
                         label: "Username",
                         validator: Appvalidators.validateUsername,
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: AppSpacing.sm),
                       Customtextformfield(
                         controller: emailController,
                         hintText: "Email Address",
@@ -65,7 +68,7 @@ class _MysignuppageState extends State<Mysignuppage> {
                         prefixIcon: Icons.mail,
                         validator: Appvalidators.validateEmail,
                       ),
-                      SizedBox(height: 11),
+                      SizedBox(height: AppSpacing.sm),
                       Customtextformfield(
                         controller: passwordController,
                         hintText: "Password",
@@ -74,7 +77,7 @@ class _MysignuppageState extends State<Mysignuppage> {
                         obscureText: true,
                         validator: Appvalidators.validatePassword,
                       ),
-                      SizedBox(height: 11),
+                      SizedBox(height: AppSpacing.sm),
                       Customtextformfield(
                         controller: confirmPasswordController,
                         hintText: "Confirm Password",
@@ -87,25 +90,30 @@ class _MysignuppageState extends State<Mysignuppage> {
                               passwordController.text,
                             ),
                       ),
-                      SizedBox(height: 11),
-                      CustomButton(
+                      SizedBox(height: AppSpacing.sm),
+                      PrimaryCustomButton(
                         text: "Get Started",
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Myloginpage(),
-                            ),
-                          );
+                          if (_formKey.currentState!.validate()) {
+                            print("Login successful");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Myhomepage(),
+                              ),
+                            );
+                          } else {
+                            print("Login failed due to invalid errors");
+                          }
                         },
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: AppSpacing.lg),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Already have an account? ",
-                            style: TextStyle(
+                            style: GoogleFonts.inter(
                               fontSize: 15,
                               color: AppColors.navy,
                             ),
@@ -115,13 +123,13 @@ class _MysignuppageState extends State<Mysignuppage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Myloginpage(),
+                                  builder: (context) => MySigninpage(),
                                 ),
                               );
                             },
                             child: Text(
                               "Sign in",
-                              style: TextStyle(
+                              style: GoogleFonts.inter(
                                 color: AppColors.teal,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
