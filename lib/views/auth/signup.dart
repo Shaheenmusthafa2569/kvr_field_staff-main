@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
 import 'package:kvr_field_staff/core/theme/app_spacing.dart';
 import 'package:kvr_field_staff/views/auth/login_screen.dart';
-import 'package:kvr_field_staff/views/myhomepage.dart';
+import 'package:kvr_field_staff/views/staff/staff_home_sccree.dart';
 import 'package:kvr_field_staff/widgets/primarybutton.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
 
@@ -99,7 +99,7 @@ class _MysignuppageState extends State<Mysignuppage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Myhomepage(),
+                                builder: (context) => StaffHomeSccreen(),
                               ),
                             );
                           } else {

@@ -4,6 +4,7 @@ import 'package:kvr_field_staff/core/theme/app_colors.dart';
 import 'package:kvr_field_staff/core/theme/app_spacing.dart';
 import 'package:kvr_field_staff/views/auth/forgot_password.dart';
 import 'package:kvr_field_staff/views/auth/signup.dart';
+import 'package:kvr_field_staff/views/staff/staff_home_sccree.dart';
 import 'package:kvr_field_staff/widgets/primarybutton.dart';
 import 'package:kvr_field_staff/widgets/textformfield.dart';
 
@@ -83,7 +84,7 @@ class _MySigninpageState extends State<MySigninpage> {
                         obscureText: true,
                         validator: Appvalidators.validatePassword,
                       ),
-                     SizedBox(height: AppSpacing.md),
+                      SizedBox(height: AppSpacing.md),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -109,6 +110,12 @@ class _MySigninpageState extends State<MySigninpage> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             print("Login successful");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => StaffHomeSccreen(),
+                              ),
+                            );
                           } else {
                             print("Login failed due to invalid errors");
                           }
@@ -156,3 +163,34 @@ class _MySigninpageState extends State<MySigninpage> {
     );
   }
 }
+// child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+//                         children: [
+//                           Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 "Good Morning",
+//                                 style: GoogleFonts.inter(
+//                                   color: AppColors.background,
+//                                 ),
+//                               ),
+//                               Text(
+//                                 "Employee 1",
+//                                 style: GoogleFonts.inter(
+//                                   color: Colors.white,
+//                                   fontSize: 24,
+//                                   fontWeight: FontWeight.bold,
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+
+//                           CircleAvatar(
+//                             radius: 24,
+//                             backgroundColor: AppColors.teal,
+//                             child: Icon(Icons.person),
+//                           ),
+//                         ],
+//                       ),
