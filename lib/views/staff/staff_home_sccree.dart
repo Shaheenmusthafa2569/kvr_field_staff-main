@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kvr_field_staff/core/theme/app_colors.dart';
 import 'package:kvr_field_staff/core/theme/app_spacing.dart';
+import 'package:kvr_field_staff/views/staff/clock_in_page.dart';
 import 'package:kvr_field_staff/widgets/primarybutton.dart';
 
 class StaffHomeSccreen extends StatefulWidget {
@@ -115,6 +116,7 @@ class _StaffHomeSccreenState extends State<StaffHomeSccreen> {
 
                   Card(
                     elevation: 6,
+                    shadowColor: AppColors.teal,
 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
@@ -152,7 +154,14 @@ class _StaffHomeSccreenState extends State<StaffHomeSccreen> {
                             ),
                             child: PrimaryCustomButton(
                               text: "Clock In",
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => StaffClockInSccreen(),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -194,6 +203,7 @@ class _StaffHomeSccreenState extends State<StaffHomeSccreen> {
                       Expanded(
                         child: Card(
                           elevation: 6,
+                          shadowColor: AppColors.teal,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
@@ -240,6 +250,7 @@ class _StaffHomeSccreenState extends State<StaffHomeSccreen> {
                       Expanded(
                         child: Card(
                           elevation: 6,
+                          shadowColor: AppColors.teal,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
